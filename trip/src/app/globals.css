@@ -159,3 +159,36 @@ body {
   color: #333;
   font-weight: bold;
 }
+
+.slide2 {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.elephant {
+  width: 50%;
+  background-image: url("./images/elephant.png");
+  background-size: cover;
+  background-position: left;
+  background-repeat: no-repeat;
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  margin: 0;
+  padding: 0;
+}
+
+.right-signup {
+  width: 60%;
+  background-color: #2970db;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  color: white;
+  margin: 0;
+  padding: 0;
+}

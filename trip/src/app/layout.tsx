@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className={`${inter.className}`}>
         {/* Navbar */}
-        <div className="home-background"></div>
+        <div className="home-background">
         <header className="navbar">
           <nav className="navbar-container">
             <div className="navbar-left">
@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </nav>
         </header>
-
+        </div>
         {/* Page Content */}
         <main className="content">{children}</main>
 
