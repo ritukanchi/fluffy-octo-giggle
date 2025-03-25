@@ -1,32 +1,34 @@
-import { doc, getDoc } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 
-export const fetchArticle = async () => {
+export const fetchArticles = async (searchQuery: string) => {
     try {
-        const articleRef = doc(db, "test", "test");  // Reference to document
-        console.log('Fetching document:', articleRef.path);
-
-        const articleSnap = await getDoc(articleRef);  // Fetch document
-
-        if (!articleSnap.exists()) {
-            throw new Error("Document not found");
+        if (!searchQuery.trim()) {
+            throw new Error("Search query is empty");
         }
 
-        const data = articleSnap.data();
+        const articlesRef = collection(db, "test");  // Reference to the collection
+        const q = query(articlesRef, where("test", ">=", searchQuery));  // Search in the "test" field
 
-        if (!data?.test) {
-            throw new Error("Field 'test' not found in the document");
+        console.log(`Fetching articles with query: ${searchQuery}`);
+
+        const querySnapshot = await getDocs(q);  // Fetch matching documents
+
+        if (querySnapshot.empty) {
+            console.warn("No matching documents found");
+            return [];  // Return empty array if no results
         }
 
-        console.log('Document data:', data);
+        const articles = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            title: doc.data().title || "Untitled",
+            content: doc.data().test,  // Assuming 'test' field contains the content
+        }));
 
-        return {
-            id: articleSnap.id,
-            title: "test",
-            content: data.test,
-        };
+        console.log("Fetched articles:", articles);
+        return articles;
     } catch (error) {
-        console.error("Error fetching article:", error);
-        return null;  // Return null in case of an error
+        console.error("Error fetching articles:", error);
+        return [];
     }
 };

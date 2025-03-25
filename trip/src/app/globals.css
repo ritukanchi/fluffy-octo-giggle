@@ -117,11 +117,84 @@ body {
   background-repeat: no-repeat;
   height: 100vh;
   display: fixed;
+  position: relative;
+  z-index: -1;
 }
 
 .home{
   display: flex;
 }
+
+@font-face {
+  font-family: 'Agrandir Grand Bold';
+  src: url('images/Agrandir-GrandHeavy.otf') format('truetype'); /* Update path */
+  font-weight: bold;
+  font-style: normal;
+}
+.heading{
+  font-family: 'Agrandir Grand Bold', sans-serif;
+  position: absolute;
+  top:35%;
+  left:41%;
+  font-weight: bold;
+  transform: (-50%, -50%);
+  font-size: 4rem; /* Adjust size as needed */
+  color: white; /* Make text white */
+  text-align: center;
+  z-index: 2; /* Ensure it's above the background */
+}
+.search-container {
+  position: absolute;
+  top: 60%; /* Adjust to place it below "Tripsy" */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%; /* Adjust width as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid black; /* Black border */
+  border-radius: 18px;
+  outline: none;
+  background: white; /* White background */
+  color: black; /* Black text */
+  text-align: center;
+}
+
+.search-input::placeholder {
+  color: black; /* Black placeholder */
+  opacity: 0.7; /* Optional: Makes it slightly faded */
+}
+.view-all-container {
+  position: absolute;
+  top: 72%; /* Adjusted to place below search bar */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2; /* Ensures it appears above the background */
+}
+
+.view-all-button {
+  background-color: #2970db; /* Blue background */
+  color: white; /* White text */
+  font-size: 1rem;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 18px; /* Slightly rounded corners */
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.view-all-button:hover {
+  background-color: #1e5bbf; /* Darker blue on hover */
+}
+
+
+
 
 /* Scroll-triggered div */
 .hidden-div {
@@ -137,9 +210,10 @@ body {
 
 /* Navbar Styling */
 .navbar {
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 10px 0;
+  color: rgba(255, 255, 255, 0.77);
   opacity: 0.6;
 }
 
@@ -150,6 +224,7 @@ body {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
+color: white;
 }
 
 .navbar-left,
@@ -190,10 +265,43 @@ body {
 .right-signup {
   width: 60%;
   background-color: #2970db;
-  display: flex;
+  display: block;
   justify-content: right;
   align-items: center;
   color: white;
   margin: 0;
-  padding: 0;
+  padding: 30px;
+}
+.right-signup-heading {
+  font-family: "Open Sans", sans-serif; /* Apply Open Sans */
+  font-weight: 600; /* Adjust weight as needed */
+  font-size: 50px;
+  padding-right: 40px;
+  padding: 40px;
+}
+
+.right-signup-subheading{
+  font-family: "Open Sans", sans-serif; /* Apply Open Sans */
+  font-size: 20px;
+  padding-left: 40px;
+}
+
+.signup-button {
+  background-color: #ffffff; /* Blue color */
+  font-family: "Open Sans", sans-serif; /* Apply Open Sans */
+  color: rgb(0, 0, 0);
+  padding: 10px 70px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: block; /* Ensures it appears below the text */
+  margin-top: 40px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+}
+
+.signup-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
 }

@@ -1,31 +1,63 @@
 "use client";
 
+import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../../firebaseConfig"; // Import Firebase auth
 import "../component.css";
-export default function login() {
+
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      alert("Login successful!");
+    } catch (err: any) {
+      setError(err.message);
+    }
+  };
+
   return (
-    <div className="loginContainer">
-      <h2>LOGIN</h2>
-      <form >
-        <label>Email Account</label>
-        <input
-          type="email"
-          placeholder="Enter your email"
-          required
-        />
+    <>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap" rel="stylesheet" />
 
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder="Enter your password"
-          required
-        />
-        <a href="./signup" className="link">Don't have an account?</a>
+      <div className="login-container">
+        <div className="login-heading">Login</div>
+        <form className="login-form" onSubmit={handleLogin}>
+          {error && <p className="error-message">{error}</p>}
 
-        <button type="submit">LOGIN</button>
+          <label className="login-label">Email</label>
+          <input
+            type="email"
+            required
+            className="login-input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-      </form>
+          <label className="login-label">Password</label>
+          <input
+            type="password"
+            required
+            className="login-input"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-      <p></p>
-    </div>
+          <a href="./signup" className="signup-link">
+            Don't have an account?
+          </a>
+
+          <button type="submit" className="login-button">LOGIN</button>
+        </form>
+      </div>
+    </>
   );
 }
