@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchArticle } from "../lib/firestore";
+import { fetchArticle } from "../../lib/firestore";
 
-export default function article() {
+export default function OurBlogs() {
   const [article, setArticle] = useState<{ id: string; title: string; content: string } | null>(null);
 
   useEffect(() => {
