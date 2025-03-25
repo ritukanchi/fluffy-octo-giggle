@@ -116,8 +116,12 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
+  display: fixed;
 }
 
+.home{
+  display: flex;
+}
 
 /* Scroll-triggered div */
 .hidden-div {
@@ -136,6 +140,7 @@ body {
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 10px 0;
+  opacity: 0.6;
 }
 
 .navbar-container {
