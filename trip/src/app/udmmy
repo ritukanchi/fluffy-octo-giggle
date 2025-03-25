@@ -1,0 +1,17 @@
+.slide2{
+    display: inline;
+    align-items: inline;
+    justify-content: space-evenly;
+  }
+  .elephant{
+    background-image: url("./images/elephant.png"); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
+  .right-signup{
+    background-color: blue;
+    justify-content: right;
+    height: 100vh;
+  }

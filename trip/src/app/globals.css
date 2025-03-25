@@ -116,6 +116,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
+  
 }
 
 
@@ -134,8 +135,11 @@ body {
 /* Navbar Styling */
 .navbar {
   background-color: #fff;
+  opacity: 0.6;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 10px 0;
+  padding: 22px 0;
+  color: white;
+  text-decoration-color: white;
 }
 
 .navbar-container {
