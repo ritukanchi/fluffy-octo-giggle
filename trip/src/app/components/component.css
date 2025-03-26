@@ -8,6 +8,10 @@
 .login-heading{
   font-family: 'Agrandir Grand Bold', sans-serif;
 }
+
+body {
+  background-color: #f2f6f8;
+}
 /* Login Container */
 .login-container {
   display: flex;
@@ -19,7 +23,7 @@
 
 /* Login Heading */
 .login-heading {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 600;
   margin-bottom: 20px;
   color: #333;
@@ -27,7 +31,7 @@
 
 /* Login Form */
 .login-form {
-  background: white;
+  background: #f2f6f8;
   padding: 40px;
   border-radius: 20px;
   display: flex;
