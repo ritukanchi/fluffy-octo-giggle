@@ -134,10 +134,10 @@ body {
 .heading{
   font-family: 'Agrandir Grand Bold', sans-serif;
   position: absolute;
-  top:35%;
-  left:41%;
+  top: 43%;
+  left: 50%;
   font-weight: bold;
-  transform: (-50%, -50%);
+  transform: translate(-50%, -50%);
   font-size: 4rem; /* Adjust size as needed */
   color: white; /* Make text white */
   text-align: center;
@@ -224,6 +224,8 @@ body {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
 color: white;
 }
 
