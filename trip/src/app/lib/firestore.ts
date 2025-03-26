@@ -1,4 +1,4 @@
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, orderBy, startAt, endAt, getDocs } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 
 export const fetchArticles = async (searchQuery: string) => {
@@ -7,22 +7,29 @@ export const fetchArticles = async (searchQuery: string) => {
             throw new Error("Search query is empty");
         }
 
-        const articlesRef = collection(db, "test");  // Reference to the collection
-        const q = query(articlesRef, where("test", ">=", searchQuery));  // Search in the "test" field
+        const articlesRef = collection(db, "test");
+
+        // Prefix matching query for Firestore
+        const q = query(
+            articlesRef,
+            orderBy("title"),
+            startAt(searchQuery),
+            endAt(searchQuery + "\uf8ff")  // Firestore trick for prefix match
+        );
 
         console.log(`Fetching articles with query: ${searchQuery}`);
 
-        const querySnapshot = await getDocs(q);  // Fetch matching documents
+        const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) {
             console.warn("No matching documents found");
-            return [];  // Return empty array if no results
+            return [];
         }
 
-        const articles = querySnapshot.docs.map(doc => ({
+        const articles = querySnapshot.docs.map((doc) => ({
             id: doc.id,
             title: doc.data().title || "Untitled",
-            content: doc.data().test,  // Assuming 'test' field contains the content
+            content: doc.data().content || "No content available", 
         }));
 
         console.log("Fetched articles:", articles);
