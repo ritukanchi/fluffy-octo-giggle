@@ -11,8 +11,9 @@ export default function Destination() {
           <Image
             src="/images/jaipur.png"
             alt="Jaipur"
-            
             className="destination-image"
+            width={400}  
+            height={600}  
           />
           <p className="destination-name">JAIPUR</p>
         </div>
@@ -20,8 +21,9 @@ export default function Destination() {
           <Image
             src="/images/goa.png"
             alt="Goa"
-            
             className="destination-image"
+            width={400}  
+            height={600} 
           />
           <p className="destination-name">GOA</p>
         </div>
@@ -29,8 +31,9 @@ export default function Destination() {
           <Image
             src="/images/delhi.png"
             alt="Delhi"
-            
             className="destination-image"
+            width={400} 
+            height={600} 
           />
           <p className="destination-name">DELHI</p>
         </div>
