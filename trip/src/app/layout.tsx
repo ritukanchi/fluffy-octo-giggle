@@ -47,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* "View All Travels" Button */}
           {isHomePage && (
             <div className="view-all-container">
-              <Link href="/components/destination">
+              <Link href="/components/searchbar">
                 <button className="view-all-button">View All Travels</button>
               </Link>
             </div>
