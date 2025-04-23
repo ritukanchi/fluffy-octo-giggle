@@ -33,7 +33,7 @@ export default function AddArticle() {
   };
 
   return (
-    <main className="blog-container">
+    <main className="article-form-container">
       <h1 className="blog-title">Add New Article</h1>
       <form className="search-bar" onSubmit={handleSubmit}>
         <input
