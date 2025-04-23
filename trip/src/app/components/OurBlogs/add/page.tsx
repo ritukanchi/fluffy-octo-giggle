@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../../../firebaseConfig"
-import "./AddArticle.css"; // Import the CSS file for styling
+import "./addArticle.css"; // Import the CSS file for styling
 
 export default function AddArticle() {
   const [title, setTitle] = useState("");

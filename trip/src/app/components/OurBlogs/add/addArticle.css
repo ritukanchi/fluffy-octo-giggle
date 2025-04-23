@@ -31,8 +31,15 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    
   }
-  
+
+ /* Input and textarea placeholder styling */
+.search-input::placeholder {
+    color: #494949; /* Adjust the color and opacity */
+    font-style: italic;
+    opacity: 0.3; /* Optional: make it italic for better distinction */
+  }
   .search-input:focus {
     outline: none;
     border-color: #007bff;
@@ -61,7 +68,7 @@
   }
   
   /* Message styling */
-  p {
+  .blog-container p {
     text-align: center;
     font-size: 1rem;
     color: #28a745;
