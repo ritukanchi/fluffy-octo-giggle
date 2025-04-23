@@ -8,7 +8,7 @@ export const fetchArticles = async (searchQuery: string) => {
       throw new Error("Search query is empty");
     }
 
-    const articlesRef = collection(db, "test");
+    const articlesRef = collection(db, "blogs");
 
     const q = query(
       articlesRef,
