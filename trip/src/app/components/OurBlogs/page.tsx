@@ -3,12 +3,14 @@
 import { useEffect, useState } from "react";
 import { fetchArticles } from "../../lib/firestore";
 import "./OurBlogs.css"; // Import the CSS file for styling
+import { useRouter } from "next/navigation"; // For client-side navigation
 
 export default function OurBlogs() {
-  const [articles, setArticles] = useState<{ id: string; title: string; content: string }[]>([]);
+  const [articles, setArticles] = useState<{ id: string; title: string; content: string; link: string }[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter(); // For navigation to article pages
 
   const handleSearch = async () => {
     console.log("Search query:", searchQuery);
@@ -16,7 +18,7 @@ export default function OurBlogs() {
     setLoading(true);
     setError(null);
     try {
-      const data = await fetchArticles(searchQuery);
+      const data = await fetchArticles(searchQuery); // Ensure `fetchArticles` returns `link` for each blog
       setArticles(data);
     } catch (err) {
       setError("Failed to fetch articles. Please try again.");
@@ -61,6 +63,12 @@ export default function OurBlogs() {
               <div key={article.id} className="article-card">
                 <h2 className="article-title">{article.title}</h2>
                 <p className="article-content">{article.content}</p>
+                <button
+                  className="article-link-button"
+                  onClick={() => router.push(`/articles/${article.id}`)} // Navigate to the article page
+                >
+                  Read More
+                </button>
               </div>
             ))
           ) : (

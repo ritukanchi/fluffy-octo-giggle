@@ -4,10 +4,6 @@ import { db } from "../../../firebaseConfig";
 export const fetchArticles = async (searchQuery: string) => {
   try {
     const normalizedQuery = searchQuery.trim().toLowerCase();
-    if (!normalizedQuery) {
-      throw new Error("Search query is empty");
-    }
-
     const articlesRef = collection(db, "blogs");
 
     const q = query(
@@ -15,17 +11,15 @@ export const fetchArticles = async (searchQuery: string) => {
       where("lowercaseTitle", "==", normalizedQuery) // exact match on normalized title
     );
 
-    console.log(`Searching for: ${normalizedQuery}`);
-
     const querySnapshot = await getDocs(q);
 
     const articles = querySnapshot.docs.map((doc) => ({
       id: doc.id,
       title: doc.data().title || "Untitled",
       content: doc.data().content || "No content available",
+      link: `/articles/${doc.id}`, // Generate the link dynamically
     }));
 
-    console.log("Fetched articles:", articles);
     return articles;
   } catch (error) {
     console.error("Error fetching articles:", error);
