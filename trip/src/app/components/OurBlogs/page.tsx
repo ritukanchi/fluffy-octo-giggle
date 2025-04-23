@@ -2,42 +2,71 @@
 
 import { useEffect, useState } from "react";
 import { fetchArticles } from "../../lib/firestore";
+import "./OurBlogs.css"; // Import the CSS file for styling
 
 export default function OurBlogs() {
   const [articles, setArticles] = useState<{ id: string; title: string; content: string }[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSearch = async () => {
-    const data = await fetchArticles(searchQuery);
-    setArticles(data);
+    console.log("Search query:", searchQuery);
+
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await fetchArticles(searchQuery);
+      setArticles(data);
+    } catch (err) {
+      setError("Failed to fetch articles. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+    console.log("Fetched articles:", articles);
   };
 
+  useEffect(() => {
+    // Fetch all articles on initial load
+    handleSearch();
+  }, []);
+
   return (
-    <main>
-      <h1>Articles</h1>
-      
-      {/* Search Input */}
-      <div style={{ marginBottom: "20px" }}>
+    <main className="blog-container">
+      <h1 className="blog-title">Our Blogs</h1>
+
+      {/* Search Bar */}
+      <div className="search-bar">
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search articles..."
-          style={{ padding: "10px", marginRight: "10px" }}
+          placeholder="Search for articles..."
+          className="search-input"
         />
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch} className="search-button">
+          Search
+        </button>
       </div>
 
+      {/* Loading and Error Messages */}
+      {loading && <p className="loading-message">Loading articles...</p>}
+      {error && <p className="error-message">{error}</p>}
+
       {/* Display Articles */}
-      {articles.length > 0 ? (
-        articles.map((article) => (
-          <div key={article.id}>
-            <h2>{article.title}</h2>
-            <p>{article.content}</p>
-          </div>
-        ))
-      ) : (
-        <p>No articles found.</p>
+      {!loading && !error && (
+        <div className="articles-container">
+          {articles.length > 0 ? (
+            articles.map((article) => (
+              <div key={article.id} className="article-card">
+                <h2 className="article-title">{article.title}</h2>
+                <p className="article-content">{article.content}</p>
+              </div>
+            ))
+          ) : (
+            <p className="no-articles-message">No articles found.</p>
+          )}
+        </div>
       )}
     </main>
   );
