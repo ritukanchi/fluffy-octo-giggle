@@ -307,3 +307,32 @@ color: white;
 .signup-button:hover {
   background-color: #0056b3; /* Darker blue on hover */
 }
+
+#footerCopyright{
+  text-align: center;
+  margin: 10px auto;
+
+ 
+}
+
+#footerCopyright {
+  display-content: none;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
+}
+
+.whole {
+  flex: 1; /* Pushes the footer to the bottom */
+}
+
+.footer {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #f2f2f2; /* Optional: Add a background color */
+  color: #333; /* Optional: Add text color */
+}
+
