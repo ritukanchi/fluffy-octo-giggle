@@ -20,7 +20,8 @@ export default function ArticlePage() {
       }
   
       try {
-        const docRef = doc(db, "blogs", id);
+        const idStr = Array.isArray(id) ? id[0]: id; 
+        const docRef = doc(db, "blogs", idStr);
         const docSnap = await getDoc(docRef);
   
         if (docSnap.exists()) {
